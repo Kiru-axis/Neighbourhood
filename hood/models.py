@@ -66,3 +66,11 @@ class Post(models.Model):
     date = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_owner')
     hood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='hood_post')
+
+
+class Business(models.Model):
+    name = models.CharField(max_length=120)
+    email = models.EmailField(max_length=254)
+    description = models.TextField(blank=True)
+    neighbourhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='business')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
