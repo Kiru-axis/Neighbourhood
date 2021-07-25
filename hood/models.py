@@ -74,3 +74,9 @@ class Business(models.Model):
     description = models.TextField(blank=True)
     neighbourhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='business')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+
+    def create_business(self):
+        self.save()
+
+    def delete_business(self):
+        self.delete()
