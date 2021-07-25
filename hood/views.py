@@ -45,4 +45,3 @@ def create_hood(request):
     else:
         form = NeighbourHoodForm()
     return render(request, 'hood/newhood.html', {'form': form})
-
