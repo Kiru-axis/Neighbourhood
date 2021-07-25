@@ -75,8 +75,16 @@ class Business(models.Model):
     neighbourhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='business')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
 
+    # create
     def create_business(self):
         self.save()
 
+    # delete
     def delete_business(self):
         self.delete()
+
+    # search
+    @classmethod
+    def search_business(cls, name):
+        return cls.objects.filter(name__icontains=name).all()
+
