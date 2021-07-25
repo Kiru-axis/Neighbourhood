@@ -109,3 +109,35 @@ def edit_profile(request, username):
     else:
         form = UpdateProfileForm(instance=request.user.profile)
     return render(request, 'hood/editprofile.html', {'form': form})
+
+
+# posts section
+def create_post(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.hood = hood
+            post.user = request.user.profile
+            post.save()
+            return redirect('hood/single-hood', hood.id)
+    else:
+        form = PostForm()
+    return render(request, 'hood/post.html', {'form': form})
+
+# Businesses section
+def search_business(request):
+    if request.method == 'GET':
+        name = request.GET.get("title")
+        results = Business.objects.filter(name__icontains=name).all()
+        print(results)
+        message = f'name'
+        params = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'hood/results.html', params)
+    else:
+        message = "You haven't searched for any business category"
+    return render(request, "hood/results.html")
