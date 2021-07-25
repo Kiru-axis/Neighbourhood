@@ -1,0 +1,48 @@
+
+  <!--Navbar blue-->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light primary-color">
+    <h3><a href="{% url 'index' %}"><strong><i class="fas fa-home"></i></strong>HOODEYE</a></h3>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mx-3">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'hood' %}">Hoods</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link waves-effect waves-light" href="{% url 'profile' user.username %}"> {{user.username}}
+            <img class="rounded-circle nav-img"src="{{ user.profile.profile_picture.url }}" alt="">
+            <span class="sr-only"></span>
+          </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" ></i> Profile
+          </a>
+          <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item waves-effect waves-light" href="{% url 'edit-profile' user.username %}">Edit profile</a>
+            
+            {% if user.profile.neighbourhood %}
+            <a class="dropdown-item waves-effect waves-light" href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{user.profile.neighbourhood.name}}</a>
+            {% endif %}
+            <a class="dropdown-item waves-effect waves-light" href="{% url 'logout' %}">Logout</a>
+          </div>
+        </li>
+        {% else %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <!--/.Navbar blue-->
+
+ 
