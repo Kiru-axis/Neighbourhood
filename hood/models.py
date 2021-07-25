@@ -15,3 +15,12 @@ class NeighbourHood(models.Model):
     health_workers = models.IntegerField(null=True, blank=True)
     police_number = models.IntegerField(null=True, blank=True)
     
+    # create neighbourhood
+    def create_neighbourhood(self):
+        self.save()
+
+    # delet neighbouthood
+    def delete_neighbourhood(self):
+        self.delete()
+        
+    # update neighbourho
