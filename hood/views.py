@@ -64,7 +64,7 @@ def single_hood(request,id):
             print(hood)
             print(business)
             print(posts)
-            return redirect('hood/single-hood', hood.id)
+            return redirect('single-hood', hood.id)
             
     else:
         form = BusinessForm()
@@ -105,7 +105,7 @@ def edit_profile(request, username):
         form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if form.is_valid():
             form.save()
-            return redirect('hood/profile', user.username)
+            return redirect('profile', user.username)
     else:
         form = UpdateProfileForm(instance=request.user.profile)
     return render(request, 'hood/editprofile.html', {'form': form})
