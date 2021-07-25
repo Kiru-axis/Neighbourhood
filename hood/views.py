@@ -3,6 +3,8 @@ from django.contrib.auth import login, authenticate
 from .forms import SignupForm, BusinessForm,UpdateProfileForm, NeighbourHoodForm, PostForm
 from .models import NeighbourHood, Profile, Business, Post
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+
 
 # Create your views here.
 def index(request):
@@ -91,5 +93,19 @@ def leave_hood(request, id):
     request.user.profile.save()
     return redirect('hood')
 
+
+# profile section
 def profile(request, username):
     return render(request, 'hood/profile.html')
+
+    # edit profile
+def edit_profile(request, username):
+    user = User.objects.get(username=username)
+    if request.method == 'POST':
+        form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('hood/profile', user.username)
+    else:
+        form = UpdateProfileForm(instance=request.user.profile)
+    return render(request, 'hood/editprofile.html', {'form': form})
