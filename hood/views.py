@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
-from .forms import SignupForm,NeighbourHoodForm
+from .forms import SignupForm, BusinessForm,UpdateProfileForm, NeighbourHoodForm, PostForm
 from .models import NeighbourHood, Profile, Business, Post
 from django.contrib.auth.decorators import login_required
 
@@ -45,3 +45,31 @@ def create_hood(request):
     else:
         form = NeighbourHoodForm()
     return render(request, 'hood/newhood.html', {'form': form})
+
+    # single hood details
+def single_hood(request,id):
+    hood = NeighbourHood.objects.get(id=id)
+    business = Business.objects.filter(neighbourhood=hood)
+    posts = Post.objects.filter(hood=hood)
+    posts = posts[::-1]
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            b_form = form.save(commit=False)
+            b_form.neighbourhood = hood
+            b_form.user = request.user.profile
+            b_form.save()
+            print(hood)
+            print(business)
+            print(posts)
+            return redirect('hood/single-hood', hood.id)
+            
+    else:
+        form = BusinessForm()
+    params = {
+        'hood': hood,
+        'business': business,
+        'form': form,
+        'posts': posts
+    }
+    return render(request, 'hood/single_hood.html', params)
