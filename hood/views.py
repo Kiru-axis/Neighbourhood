@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from .forms import SignupForm
 from .models import NeighbourHood, Profile, Business, Post
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def index(request):
@@ -30,3 +31,4 @@ def hoods(request):
     }
     print(all_hoods)
     return render(request, 'hood/all_hoods.html', params)
+
