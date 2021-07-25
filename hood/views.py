@@ -73,3 +73,20 @@ def single_hood(request,id):
         'posts': posts
     }
     return render(request, 'hood/single_hood.html', params)
+
+
+        # join or leave your hoods
+
+@login_required(login_url='login')
+def join_hood(request, id):
+    neighbourhood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.neighbourhood = neighbourhood
+    request.user.profile.save()
+    return redirect('hood')
+
+
+def leave_hood(request, id):
+    hood = get_object_or_404(NeighbourHood, id=id)
+    request.user.profile.neighbourhood = None
+    request.user.profile.save()
+    return redirect('hood')
