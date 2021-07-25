@@ -44,3 +44,9 @@ class Profile(models.Model):
     profile_picture = models.ImageField(upload_to='images/', default='default.png')
     location = models.CharField(max_length=50, blank=True, null=True)
     neighbourhood = models.ForeignKey(NeighbourHood, on_delete=models.SET_NULL, null=True, related_name='members', blank=True)
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
