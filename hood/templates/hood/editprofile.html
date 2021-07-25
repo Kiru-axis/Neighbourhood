@@ -1,0 +1,21 @@
+{% extends 'hood/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{%load static%}
+
+<div class="container" style="background-image: url({% static 'images/profile.jpg' %}); background-repeat:no-repeat;background-size:cover">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3 class="text-center">Update Profile</h3>
+            <form action="" method="post" novalidate enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <button class="btn btn-sm btn-outline-success"> Update</button>
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+{% endblock %}
