@@ -12,7 +12,7 @@
                     </div>
                     <div class="col-md-7">
                         <div class="card-body">
-                            <h5 class="card-title tt">{{ hood.name }} ({{hood.location}})
+                            <h5 class="card-title tt">{{ hood.name }} , {{hood.location}}
                             </h5>
                             <h6 class="card-text">
                                 <span><strong>{{hood.members.count}}</strong> Member{{hood.members.count|pluralize}}</span>
@@ -20,9 +20,9 @@
                                 {{ hood.hood_post.count }}</strong> Post{{ hood.hood_post.count|pluralize }}
                             </h6>
                             <p class="card-text">{{hood.description}}</p>
-                            <p class="card-text"><span class="text-info">Police Tell</span>
+                            <p class="card-text"><span class="text-info">Police Count</span>
                                 &nbsp;<strong>{{hood.police_number}}</strong> |
-                                <span class="text-info">Hospital Tell</span> <strong>{{hood.health_tell}}</strong></p>
+                                <span class="text-info">Health services</span> <strong>{{hood.health_tell}}</strong></p>
                             <p class="card-text">Administrator: <small class="text-muted">
                                 {{ hood.admin.user.username }}</small></p>
                                 <button class="btn btn-outline-danger">Delete hood</button>
