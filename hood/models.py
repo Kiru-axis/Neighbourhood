@@ -34,7 +34,7 @@ class NeighbourHood(models.Model):
         return cls.objects.filter(id=neighborhood_id)
 
     def __str__(self):
-        return f'{self.name} hood'
+        return f'{self.name} NeighbourHood'
 
 # users class
 class Profile(models.Model):
@@ -88,3 +88,6 @@ class Business(models.Model):
     def search_business(cls, name):
         return cls.objects.filter(name__icontains=name).all()
 
+    # call
+    def __str__(self):
+        return f'{self.name} Business'
