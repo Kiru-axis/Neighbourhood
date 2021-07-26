@@ -30,3 +30,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ('user', 'hood')
+
+class UpdateBusinessForm(forms.ModelForm):
+    class Meta:
+        model = Business
+        exclude = ('user', 'neighbourhood')

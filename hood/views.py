@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
-from .forms import SignupForm, BusinessForm,UpdateProfileForm, NeighbourHoodForm, PostForm
+from .forms import SignupForm, BusinessForm,UpdateProfileForm, NeighbourHoodForm, PostForm,UpdateBusinessForm
 from .models import NeighbourHood, Profile, Business, Post
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -141,3 +141,16 @@ def search_business(request):
     else:
         message = "You haven't searched for any business category"
     return render(request, "hood/results.html")
+def update_business(request, hood_id):
+    business= Business.objects.get(id=hood_id)
+    if request.method == 'POST':
+        form = UpdateBusinessForm(instance=business)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+    else:
+        form = UpdateBusinessForm(instance=request.user.profile)
+    context = {
+        'form': form,
+        }
+    return render(request, 'hood/editbiz.html',context)

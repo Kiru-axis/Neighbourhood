@@ -60,6 +60,7 @@
                                 <p class="card-text">{{bus.description}}</p>
                                 <p class="card-text">Owner: <small class="text-muted">
                                     {{ bus.user.user.username|title }}</small></p>
+                                    <a class="btn btn-sm btn-outline-info mb-4" href="{% url 'update_business'% business.id}">Update business</a> 
                             </div>
                         </div>
                     </div>
