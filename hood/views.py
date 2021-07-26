@@ -121,7 +121,7 @@ def create_post(request, hood_id):
             post.hood = hood
             post.user = request.user.profile
             post.save()
-            return redirect('hood/single-hood', hood.id)
+            return redirect('single-hood', hood.id)
     else:
         form = PostForm()
     return render(request, 'hood/post.html', {'form': form})

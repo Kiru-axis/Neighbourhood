@@ -22,7 +22,7 @@
                             <p class="card-text">{{hood.description}}</p>
                             <p class="card-text"><span class="text-info">Police Count</span>
                                 &nbsp;<strong>{{hood.police_number}}</strong> |
-                                <span class="text-info">Health services</span> <strong>{{hood.health_tell}}</strong></p>
+                                <span class="text-info">Health services</span> <strong>{{hood.health_workers}}</strong></p>
                             <p class="card-text">Administrator: <small class="text-muted">
                                 {{ hood.admin.user.username }}</small></p>
                                 <button class="btn btn-outline-danger">Delete hood</button>
@@ -93,7 +93,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body bg-dark">
                                 <form action="" method="post">
                                     {% csrf_token%}
                                     {{form|crispy}}

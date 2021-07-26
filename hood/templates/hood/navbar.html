@@ -25,12 +25,14 @@
           <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item waves-effect waves-light" href="{% url 'edit-profile' user.username %}">Edit profile</a>
             
-            {% if user.profile.neighbourhood %}
-            <a class="dropdown-item waves-effect waves-light" href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{user.profile.neighbourhood.name}}</a>
-            {% endif %}
             <a class="dropdown-item waves-effect waves-light" href="{% url 'logout' %}">Logout</a>
           </div>
         </li>
+        <li class="nav-item active">
+          {% if user.profile.neighbourhood %}
+            <a class="dropdown-item waves-effect waves-light" href="{% url 'single-hood' user.profile.neighbourhood.id %}">{{user.profile.neighbourhood.name}}</a>
+          {% endif %}
+      </li>
         {% else %}
         <li class="nav-item active">
             <a class="nav-link" href="{% url 'login' %}">Log In</a>
