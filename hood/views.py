@@ -154,3 +154,10 @@ def update_business(request, hood_id):
         'form': form,
         }
     return render(request, 'hood/editbiz.html',context)
+
+# hood members
+def hood_members(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    members = Profile.objects.filter(neighbourhood=hood)
+    return render(request, 'hood/members.html', {'members': members})
+

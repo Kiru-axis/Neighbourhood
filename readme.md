@@ -39,7 +39,7 @@
 * When: User clicks leave/join button at the bottom of each hood.
 * Then: User either leaves or joins the hood depending on the button clicked.
 
-5. **User session should end when logout url is chosen**
+6. **User session should end when logout url is chosen**
 * Given: Logout option is given
 * When: User chooses logout option
 * Then: User session is ended
