@@ -11,13 +11,38 @@
 ## Behaviour Development Design
 1. **User shall login/signup**
 * Given: Signup/login forms/pages are accessed
-* When: User tries to login
-* Then: User details are authenticated if no error is found and can access the desire page.
+* When: User tries to login/signup
+* Then: User details are authenticated if no error is found and can access the desired pages.
 
 2. **All NeighbourHoods**
 * Given: User is logged in
 * When: Hood link is clicked on the navigation bar
-* Then: All NeighbourHoods are shown with an aption to join.
+* Then: All NeighbourHoods are shown with an option to join.
+
+3. **Change Profile**
+* Given: Edit profile page is accessed by clicking editprofile on navbar
+* When: User tries changing profile
+* Then: Edit profile form is displayed
+
+3. **Create Hood**
+* Given: User creates a hood aquiring admin level access.
+* When: User adds name.location,logo,health_workers,description and police_number
+* Then: A new hood is created and added to all hoods page.
+
+4. **Manage Hood**
+* Given: User creates the hood.
+* When: User creates Businesses and posts.
+* Then: All posts and Businesses added by the user and the joining members are displayed
+
+5. **Join/Leave Hood**
+* Given: User decides to join or leave a hood.
+* When: User clicks leave/join button at the bottom of each hood.
+* Then: User either leaves or joins the hood depending on the button clicked.
+
+5. **User session should end when logout url is chosen**
+* Given: Logout option is given
+* When: User chooses logout option
+* Then: User session is ended
 
 ## Languages used
 * Python(Django)
