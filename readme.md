@@ -5,7 +5,20 @@
 
 ## Description
 * These application lets you join a neighborhood or create one.
-* When you join you can see the security and health personell on the hood you join
+* When you join you can see the security and health personell of the area.
+
+
+## Behaviour Development Design
+1. **User shall login/signup**
+* Given: Signup/login forms/pages are accessed
+* When: User tries to login
+* Then: User details are authenticated if no error is found and can access the desire page.
+
+2. **All NeighbourHoods**
+* Given: User is logged in
+* When: Hood link is clicked on the navigation bar
+* Then: All NeighbourHoods are shown with an aption to join.
+
 ## Languages used
 * Python(Django)
 * html5
